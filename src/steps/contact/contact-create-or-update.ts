@@ -47,7 +47,6 @@ export class CreateOrUpdateContactStep extends BaseStep implements StepInterface
       }
     }
 
-
     try {
       Object.keys(stepData.contact).forEach((key) => {
         contact['properties'].push({
