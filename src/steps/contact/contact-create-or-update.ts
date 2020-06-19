@@ -40,6 +40,13 @@ export class CreateOrUpdateContactStep extends BaseStep implements StepInterface
     const contact: Object = {
       properties: [],
     };
+    const dateTokenFormat = /\d{4}-\d{2}-\d{2}(?:.?\d{2}:\d{2}:\d{2})?/;
+    for (const key in stepData.contact) {
+      if (dateTokenFormat.test(stepData.contact[key])) {
+        stepData.contact[key] = this.client.toEpoch(new Date(stepData.contact[key]));
+      }
+    }
+
 
     try {
       Object.keys(stepData.contact).forEach((key) => {

@@ -20,6 +20,8 @@ describe('CreateOrUpdateContactStep', () => {
     clientWrapperStub = sinon.stub();
     clientWrapperStub.createOrUpdateContact = sinon.stub();
     clientWrapperStub.getContactByEmail = sinon.stub();
+    clientWrapperStub.toEpoch = sinon.stub();
+    clientWrapperStub.toEpoch.returns(new Date().valueOf());
     clientWrapperStub.toDate = sinon.stub();
     clientWrapperStub.toDate.returns(new Date().toISOString());
     stepUnderTest = new Step(clientWrapperStub);
@@ -74,7 +76,7 @@ describe('CreateOrUpdateContactStep', () => {
       beforeEach(() => {
         protoStep.setData(Struct.fromJavaScript({
           // tslint:disable-next-line:max-line-length
-          contact:  { email: 'hubspot@test.com', properties: { createdate: new Date().valueOf(), lastmodifieddate: new Date().valueOf() } },
+          contact:  { email: 'hubspot@test.com', closedate: '2020-06-26T04:00:00.000Z', properties: { createdate: new Date().valueOf(), lastmodifieddate: new Date().valueOf() } },
         }));
         clientWrapperStub.createOrUpdateContact.returns(Promise.resolve({}));
         clientWrapperStub.getContactByEmail.returns(Promise.resolve({
