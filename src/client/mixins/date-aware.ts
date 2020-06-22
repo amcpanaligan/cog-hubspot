@@ -20,6 +20,6 @@ export class DateAwareMixin {
   }
 
   public toEpoch(date: Date): string {
-    return (date.valueOf() / 1000).toString();
+    return date.valueOf().toString();
   }
 }
